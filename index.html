@@ -222,6 +222,50 @@
   }
   .date-setter .hint { font-size: 12px; color: var(--sea); }
 
+  /* === FLIGHT BAR === */
+  .flight-bar {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .flight-item {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 16px;
+    background: var(--sea-deep);
+    color: var(--sand);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .flight-dir {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    opacity: 0.6;
+    white-space: nowrap;
+  }
+  .flight-num {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--sun);
+    white-space: nowrap;
+  }
+  .flight-time {
+    font-family: var(--mono);
+    font-size: 13px;
+    opacity: 0.9;
+    white-space: nowrap;
+  }
+  .flight-route {
+    font-family: var(--mono);
+    font-size: 11px;
+    opacity: 0.55;
+    white-space: nowrap;
+  }
+
   /* === SECTION === */
   .section { padding: 60px 0; }
   .section-num {
@@ -786,6 +830,29 @@
       <label>출발일</label>
       <input type="date" id="travel-date" />
       <span class="hint">설정하면 D-day 카운트 + 일정 탭에 날짜 자동 표시</span>
+    </div>
+
+    <div class="flight-bar">
+      <div class="flight-item">
+        <div>
+          <div class="flight-dir">가는 편</div>
+          <div class="flight-num">BX787</div>
+        </div>
+        <div>
+          <div class="flight-time">06.24(수) 17:10</div>
+          <div class="flight-route">ICN → CXR &nbsp;·&nbsp; 도착 20:40</div>
+        </div>
+      </div>
+      <div class="flight-item">
+        <div>
+          <div class="flight-dir">오는 편</div>
+          <div class="flight-num">BX788</div>
+        </div>
+        <div>
+          <div class="flight-time">06.28(일) 21:50</div>
+          <div class="flight-route">CXR → ICN &nbsp;·&nbsp; 도착 06.29 05:05</div>
+        </div>
+      </div>
     </div>
   </header>
 
