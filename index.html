@@ -222,50 +222,6 @@
   }
   .date-setter .hint { font-size: 12px; color: var(--sea); }
 
-  /* === FLIGHT BAR === */
-  .flight-bar {
-    margin-top: 10px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .flight-item {
-    flex: 1;
-    min-width: 200px;
-    padding: 12px 16px;
-    background: var(--sea-deep);
-    color: var(--sand);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .flight-dir {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    opacity: 0.6;
-    white-space: nowrap;
-  }
-  .flight-num {
-    font-family: var(--mono);
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--sun);
-    white-space: nowrap;
-  }
-  .flight-time {
-    font-family: var(--mono);
-    font-size: 13px;
-    opacity: 0.9;
-    white-space: nowrap;
-  }
-  .flight-route {
-    font-family: var(--mono);
-    font-size: 11px;
-    opacity: 0.55;
-    white-space: nowrap;
-  }
-
   /* === SECTION === */
   .section { padding: 60px 0; }
   .section-num {
@@ -360,6 +316,53 @@
     font-size: 10px;
     color: var(--sea);
     text-align: center;
+  }
+
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 8px;
+  }
+  .cost-table td {
+    padding: 7px 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: 13px;
+  }
+  .cost-table td:first-child { color: var(--sea); }
+  .cost-table td:last-child {
+    text-align: right;
+    font-family: var(--mono);
+    color: var(--sea-deep);
+  }
+  .cost-table .cost-sum td {
+    border-bottom: none;
+    border-top: 2px solid var(--ink);
+    padding-top: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--coral);
+  }
+  .cost-table .cost-sum td:first-child { color: var(--coral); }
+
+  .quick-conv {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 0;
+  }
+  .quick-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 12px;
+    background: var(--sand);
+    font-family: var(--mono);
+    font-size: 13px;
+    border-radius: 2px;
+  }
+  .quick-row span:first-child { color: var(--sea); }
+  .quick-row span:last-child {
+    color: var(--sea-deep);
+    font-weight: 500;
   }
 
   /* === MAP === */
@@ -793,14 +796,14 @@
   <header class="hero" id="overview">
     <div class="hero-top">
       <div>NHA · TRANG<br>VIETNAM · 2026</div>
-      <div>FAMILY EDITION<br>5 PAX · 4N 5D</div>
+      <div>FAMILY EDITION<br>5 PAX · 6/24-6/29</div>
     </div>
 
     <h1>Nha <span class="accent">Trang</span></h1>
 
     <p class="hero-lede">
-      엄마 · 언니 둘 · 조카(초5) · 본인 — 다섯 식구의 하얏트 리젠시 나트랑 여행.
-      고루 놀고, 고루 쉬는 4박 5일 대시보드.
+      엄마 · 언니 둘 · 조카 · 본인 — 다섯 식구의 하얏트 리젠시 나트랑 여행.
+      <strong>6/24(수) 출발 · 6/29(월) 귀국</strong> · 에어부산 BX787.
     </p>
 
     <div class="live-bar">
@@ -828,41 +831,16 @@
 
     <div class="date-setter">
       <label>출발일</label>
-      <input type="date" id="travel-date" />
-      <span class="hint">설정하면 D-day 카운트 + 일정 탭에 날짜 자동 표시</span>
-    </div>
-
-    <div class="flight-bar">
-      <div class="flight-item">
-        <div>
-          <div class="flight-dir">가는 편</div>
-          <div class="flight-num">BX787</div>
-        </div>
-        <div>
-          <div class="flight-time">06.24(수) 17:10</div>
-          <div class="flight-route">ICN → CXR &nbsp;·&nbsp; 도착 20:40</div>
-          <div class="flight-route" style="color:var(--sun);opacity:0.9;">✈ 공항 15:10까지</div>
-        </div>
-      </div>
-      <div class="flight-item">
-        <div>
-          <div class="flight-dir">오는 편</div>
-          <div class="flight-num">BX788</div>
-        </div>
-        <div>
-          <div class="flight-time">06.28(일) 21:50</div>
-          <div class="flight-route">CXR → ICN &nbsp;·&nbsp; 도착 06.29 05:05</div>
-          <div class="flight-route" style="color:var(--sun);opacity:0.9;">✈ 공항 19:50까지</div>
-        </div>
-      </div>
+      <input type="date" id="travel-date" value="2026-06-24" />
+      <span class="hint">✈️ 에어부산 BX787 · 17:10 출발 · 예약번호 KIH4M4 · 인천 T2 14:00 집합</span>
     </div>
   </header>
 
-  <!-- CALC -->
+  <!-- CALC + 확정 비용 -->
   <section class="section" id="calc">
-    <div class="section-num">§ 01 — CALCULATORS</div>
-    <h2 class="section-title">환율과 <em>예산</em></h2>
-    <p class="section-sub">실시간 환율 적용. 입력하면 즉시 반영.</p>
+    <div class="section-num">§ 01 — MONEY</div>
+    <h2 class="section-title">환율 · <em>비용</em></h2>
+    <p class="section-sub">실시간 환율 + 친구가 정리한 확정 비용 + 남은 예산 추정.</p>
 
     <div class="calc-grid">
       <div class="calc-card">
@@ -882,29 +860,55 @@
       </div>
 
       <div class="calc-card" style="border-left-color: var(--coral);">
-        <h4>💰 예산 계산기 (5인)</h4>
-        <div class="calc-row">
-          <label>항공</label>
-          <input type="number" id="bud-flight" value="450000">
-          <span class="unit">/1인</span>
-        </div>
+        <h4>💸 확정 결제 (친구 정리)</h4>
+        <table class="cost-table">
+          <tr><td>은영언니 항공권</td><td>485,800원</td></tr>
+          <tr><td>엄마 항공권 (공용)</td><td>433,800원</td></tr>
+          <tr><td>큰언니 숙소 (5인 분담)</td><td>2,466,616원</td></tr>
+          <tr><td>호핑 투어 (공용 · 네이버)</td><td>404,500원</td></tr>
+          <tr class="cost-sum"><td>확정 결제 합계</td><td>3,790,716원</td></tr>
+        </table>
+        <div class="calc-meta">💡 큰언니가 숙소 전액 결제. 정산 방식은 친구에게 확인.</div>
+      </div>
+    </div>
+
+    <div class="calc-grid" style="margin-top: 16px;">
+      <div class="calc-card" style="border-left-color: var(--leaf);">
+        <h4>🍜 현지 예상 지출 (5인 · 4박)</h4>
         <div class="calc-row">
           <label>식비</label>
           <input type="number" id="bud-food" value="30000">
           <span class="unit">/일·인</span>
         </div>
         <div class="calc-row">
-          <label>액티비티</label>
-          <input type="number" id="bud-activity" value="300000">
+          <label>마사지</label>
+          <input type="number" id="bud-massage" value="50000">
+          <span class="unit">/회·인</span>
+        </div>
+        <div class="calc-row">
+          <label>입장료·기타</label>
+          <input type="number" id="bud-etc" value="100000">
           <span class="unit">/1인</span>
         </div>
         <div class="calc-row">
-          <label>교통/기타</label>
-          <input type="number" id="bud-etc" value="150000">
+          <label>교통(Grab)</label>
+          <input type="number" id="bud-transport" value="80000">
           <span class="unit">/1인</span>
         </div>
         <div class="calc-result" id="budget-result">–</div>
-        <div class="calc-meta">숙박은 큰언니 스폰서 🙏 미포함</div>
+        <div class="calc-meta">마사지 일정에 2회 잡혀있음. 펍·바 술값 별도 계산</div>
+      </div>
+
+      <div class="calc-card" style="border-left-color: var(--sun);">
+        <h4>📌 빠른 환산 (자주 쓰는 단위)</h4>
+        <div id="quick-conv" class="quick-conv">
+          <div class="quick-row"><span>1,000원</span><span id="q1">–</span></div>
+          <div class="quick-row"><span>5,000원</span><span id="q5">–</span></div>
+          <div class="quick-row"><span>10,000원</span><span id="q10">–</span></div>
+          <div class="quick-row"><span>50,000원</span><span id="q50">–</span></div>
+          <div class="quick-row"><span>100,000원</span><span id="q100">–</span></div>
+        </div>
+        <div class="calc-meta">베트남 화폐는 0이 많아 헷갈리기 쉬움. 미리 머릿속 변환 학습용</div>
       </div>
     </div>
   </section>
@@ -929,6 +933,7 @@
       <button class="place-tab" data-cat="한식">한식</button>
       <button class="place-tab" data-cat="해산물">해산물</button>
       <button class="place-tab" data-cat="베트남식">베트남식</button>
+      <button class="place-tab" data-cat="펍·바">펍·바</button>
       <button class="place-tab" data-cat="카페">카페</button>
       <button class="place-tab" data-cat="디저트">디저트</button>
       <button class="place-tab" data-cat="쇼핑·마트">쇼핑·마트</button>
@@ -940,177 +945,263 @@
   <!-- PLAN -->
   <section class="section" id="plan">
     <div class="section-num">§ 03 — ITINERARY</div>
-    <h2 class="section-title">4박 5일 <em>일정</em></h2>
-    <p class="section-sub">Day 탭으로 이동. 출발일 설정하면 오늘 날짜 자동 TODAY 표시.</p>
+    <h2 class="section-title">확정 <em>일정</em></h2>
+    <p class="section-sub">
+      친구가 확정한 일정. 에어부산 BX787 (예약번호 KIH4M4) · 6/24(수)~6/29(월).
+      Day 탭으로 이동. 오늘 날짜가 자동 TODAY 하이라이트.
+    </p>
 
     <div class="tab-bar" id="day-tabs">
-      <button class="tab active" data-day="1">DAY 01<span class="tab-date" data-day-date="0"></span></button>
-      <button class="tab" data-day="2">DAY 02<span class="tab-date" data-day-date="1"></span></button>
-      <button class="tab" data-day="3">DAY 03<span class="tab-date" data-day-date="2"></span></button>
-      <button class="tab" data-day="4">DAY 04<span class="tab-date" data-day-date="3"></span></button>
-      <button class="tab" data-day="5">DAY 05<span class="tab-date" data-day-date="4"></span></button>
+      <button class="tab active" data-day="1">6/24 수<span class="tab-date">출국</span></button>
+      <button class="tab" data-day="2">6/25 목<span class="tab-date">시내·사원</span></button>
+      <button class="tab" data-day="3">6/26 금<span class="tab-date">호핑</span></button>
+      <button class="tab" data-day="4">6/27 토<span class="tab-date">사원·자유</span></button>
+      <button class="tab" data-day="5">6/28 일<span class="tab-date">귀국</span></button>
     </div>
 
+    <!-- DAY 1: 6/24 (수) 출국 -->
     <div class="day-panel active" data-day-panel="1">
-      <h3>도착 · 숨 고르기</h3>
+      <h3>6/24 (수) — 출국</h3>
       <div class="slots">
         <div class="slot">
-          <div class="slot-time">오후</div>
+          <div class="slot-time">14:00</div>
           <div class="slot-content">
-            <strong>깜란공항 → 하얏트 리젠시 나트랑 체크인</strong> (차로 약 40분)
-            <span class="slot-note">Grab 앱 또는 사전 예약 픽업(1인 14,000원~). 5명 + 캐리어면 7인승 패밀리 차량.</span>
-            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2409557,109.1962023" target="_blank">길찾기 →</a>
+            <strong>인천공항 제2터미널 집합</strong>
+            <span class="slot-note">패스트트랙 확인. 5명 다 도착 후 함께 체크인.</span>
           </div>
         </div>
         <div class="slot">
-          <div class="slot-time">저녁</div>
+          <div class="slot-time">17:10</div>
           <div class="slot-content">
-            <strong>호텔 앞 해변 산책 + 가벼운 쌀국수</strong>
-            <span class="slot-note">Phở Hạnh Phúc 같은 찐 로컬. 10,000+ 리뷰.</span>
-            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2441179,109.191114" target="_blank">Phở Hạnh Phúc</a>
+            <strong>에어부산 BX787 출국</strong>
+            <span class="slot-note">항공사 예약번호: KIH4M4. 약 5시간 비행.</span>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">20:40</div>
+          <div class="slot-content">
+            <strong>깜란공항 입국 → 호텔 픽업</strong>
+            <span class="slot-note">픽업 사전 예약 필수. 깜란공항 → 하얏트 약 40분.</span>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2409557,109.1962023" target="_blank" rel="noopener">하얏트 길찾기</a>
           </div>
         </div>
         <div class="slot">
           <div class="slot-time">밤</div>
           <div class="slot-content">
-            <strong>호텔 풀 / 룸 휴식</strong>
-            <span class="slot-note">첫날부터 야시장 돌지 말고 컨디션 세팅.</span>
+            <strong>체크인 → 휴식</strong>
+            <span class="slot-note">현지 시간 22시 무렵 도착. 첫날은 일찍 자고 컨디션 회복.</span>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- DAY 2: 6/25 (목) 시내·사원 -->
     <div class="day-panel" data-day-panel="2">
-      <h3>조카 하이라이트 — 빈원더스</h3>
+      <h3>6/25 (목) — 시내·사원 · 펍</h3>
       <div class="slots">
         <div class="slot">
-          <div class="slot-time">9:00</div>
+          <div class="slot-time">조식</div>
           <div class="slot-content">
-            <strong>케이블카로 혼째 섬 입도</strong>
-            <span class="slot-note">바다 위 3km 케이블카. 조카 신남 확정.</span>
-            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2170491,109.2408716" target="_blank">VinWonders</a>
+            <strong>호텔 조식</strong>
+            <span class="slot-note">06:30 - 10:30 운영.</span>
           </div>
         </div>
         <div class="slot">
           <div class="slot-time">10:00</div>
           <div class="slot-content">
-            <strong>워터파크 · 킹스가든 · 놀이기구</strong>
-            <span class="slot-note">개장 직후 알파인 코스터부터 공략. 오전이 덜 덥고 덜 붐빔.</span>
+            <strong>수영·자유시간</strong>
+            <span class="slot-note">풀 09:00 - 19:00 운영. 한낮 더위 피해 오전·저녁 추천.</span>
           </div>
         </div>
         <div class="slot">
-          <div class="slot-time">12-14</div>
+          <div class="slot-time">14:00</div>
           <div class="slot-content">
-            <strong>파크 내 점심 + 엄마는 그늘 휴식</strong>
-            <span class="slot-note">한낮엔 실내 아쿠아리움 동선으로. 외부 음식 반입 원칙 제한.</span>
+            <strong>마사지</strong>
+            <span class="slot-note">호텔 스파 or 시내 마사지샵. 2시간 코스 일반적.</span>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">16:00</div>
+          <div class="slot-content">
+            <strong>포나가르 사원</strong>
+            <span class="slot-note">입장료 3만동. 운영 06:00-18:00. 어깨·무릎 가리는 복장 필수. 16시면 햇빛 한풀 꺾여서 좋음.</span>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2653665,109.1953678" target="_blank" rel="noopener">포나가르 길찾기</a>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">17:30</div>
+          <div class="slot-content">
+            <strong>담시장 (Chợ Đầm)</strong>
+            <span class="slot-note">로컬 대형 시장. 운영 05:00-18:30. 과일·말린 망고·코코넛 커피·캐슈넛 명물. 18:30 폐장이라 빠르게.</span>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2549514,109.1918164" target="_blank" rel="noopener">담시장 길찾기</a>
           </div>
         </div>
         <div class="slot">
           <div class="slot-time">저녁</div>
           <div class="slot-content">
-            <strong>야간 타타쇼 관람 후 복귀</strong>
-            <span class="slot-note">퀄리티 높은 분수쇼. 어른도 만족.</span>
+            <strong>넴느엉 당반꾸엔</strong>
+            <span class="slot-note">나트랑 명물 넴느엉(구운 돼지고기 라이스페이퍼 롤). 담시장 근처라 동선 좋음. 1인 5만5천동 가성비.</span>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2537197,109.1938289" target="_blank" rel="noopener">넴느엉 길찾기</a>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">19:30</div>
+          <div class="slot-content">
+            <strong>스카이라이트 또는 알티튜드 (펍·바)</strong>
+            <span class="slot-note">스카이라이트는 360도 나트랑 야경. <strong>월요일 휴무 — 6/25 목요일은 영업.</strong> 미성년자는 21시 이전 퇴실 필요. 차분한 분위기 원하면 알티튜드(쉐라톤 28층).</span>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2433961,109.195842" target="_blank" rel="noopener">스카이라이트</a>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.24639,109.1958309" target="_blank" rel="noopener">알티튜드</a>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">밤</div>
+          <div class="slot-content">
+            <strong>야시장</strong>
+            <span class="slot-note">호텔 도보권. 기념품 가볍게 구경.</span>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2397172,109.1964422" target="_blank" rel="noopener">야시장</a>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- DAY 3: 6/26 (금) 호핑투어 -->
     <div class="day-panel" data-day-panel="3">
-      <h3>호핑 투어 + 해산물 만찬</h3>
+      <h3>6/26 (금) — 호핑 투어 · 세일링클럽</h3>
       <div class="slots">
         <div class="slot">
-          <div class="slot-time">오전</div>
+          <div class="slot-time">조식</div>
           <div class="slot-content">
-            <strong>2섬 호핑 투어</strong>
-            <span class="slot-note">혼문(스노클링) + 혼땀(머드 스파) 조합 추천. 호텔 픽업 포함 투어 예약.</span>
+            <strong>호텔 조식 (이른 시간)</strong>
+            <span class="slot-note">8:30 픽업 전 충분히 먹고 출발.</span>
           </div>
         </div>
         <div class="slot">
-          <div class="slot-time">점심</div>
+          <div class="slot-time">08:30</div>
           <div class="slot-content">
-            <strong>투어 내 점심 제공</strong>
+            <strong>호핑 투어 픽업</strong>
+            <span class="slot-note">결제 완료 (네이버 예약). 멀미약·자외선차단·수영복·물 챙기기.</span>
           </div>
         </div>
         <div class="slot">
-          <div class="slot-time">16-17</div>
+          <div class="slot-time">14:00</div>
           <div class="slot-content">
-            <strong>호텔 복귀 · 풀 또는 낮잠</strong>
+            <strong>호핑 투어 드랍</strong>
+            <span class="slot-note">호텔 복귀. 짠물 씻고 풀에서 잠깐 휴식.</span>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">16:00</div>
+          <div class="slot-content">
+            <strong>마사지</strong>
+            <span class="slot-note">호핑 후 피로 풀기 좋음. 2회차 마사지.</span>
           </div>
         </div>
         <div class="slot">
           <div class="slot-time">저녁</div>
           <div class="slot-content">
-            <strong>해산물 만찬 — 나트랑 필수</strong>
-            <span class="slot-note">랍스터 + 통새우 + 모닝글로리. Mộc Quán 또는 Lala Seafood가 평점 4.9.</span>
-            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2405298,109.1894761" target="_blank">Mộc Quán</a>
-            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.239424,109.1912591" target="_blank">Lala Seafood</a>
+            <strong>저녁 (미정 — 추천 옵션)</strong>
+            <span class="slot-note">해산물 만찬 추천 — Mộc Quán (랍스터 1순위) 또는 Lala (가성비). 한식 당기면 육몽 BBQ.</span>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2405298,109.1894761" target="_blank" rel="noopener">Mộc Quán</a>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.239424,109.1912591" target="_blank" rel="noopener">Lala</a>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2407513,109.1950894" target="_blank" rel="noopener">육몽 BBQ</a>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">20:00</div>
+          <div class="slot-content">
+            <strong>세일링클럽 (펍)</strong>
+            <span class="slot-note">비치프론트 펍. <strong>불쇼 22:00 시작</strong>. DJ + 빈백 + 모래사장. 분위기는 만점, 음식은 호불호(차라리 술·디저트만).</span>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2340918,109.1980213" target="_blank" rel="noopener">세일링클럽</a>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- DAY 4: 6/27 (토) 사원·자유 -->
     <div class="day-panel" data-day-panel="4">
-      <h3>시내 문화 + 한식 + 야시장</h3>
+      <h3>6/27 (토) — 사원·대성당 · 자유시간</h3>
       <div class="slots">
         <div class="slot">
-          <div class="slot-time">오전</div>
+          <div class="slot-time">조식</div>
           <div class="slot-content">
-            <strong>포나가르 참 타워 + 롱선사 (흰 대불)</strong>
-            <span class="slot-note">호텔에서 택시 10-15분. 오전 일찍 가야 덜 덥고 사진 좋음. <em>사원 방문 시 어깨·무릎 가리는 복장 필수.</em></span>
-            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2653665,109.1953678" target="_blank">포나가르</a>
-            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2501803,109.1801753" target="_blank">롱선사</a>
+            <strong>호텔 조식</strong>
+            <span class="slot-note">06:30 - 10:30.</span>
           </div>
         </div>
         <div class="slot">
-          <div class="slot-time">점심</div>
+          <div class="slot-time">10:00</div>
           <div class="slot-content">
-            <strong>라냐(La Nhà) 또는 An Thôi</strong>
-            <span class="slot-note">깔끔한 베트남 가정식. 향신료 조절 잘해줌.</span>
-            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2397861,109.1904295" target="_blank">라냐</a>
+            <strong>롱선사</strong>
+            <span class="slot-note">거대 흰 대불. 220계단 — 엄마 컨디션 체크. 운영 06:00-18:00. 어깨·무릎 가리는 복장.</span>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2501803,109.1801753" target="_blank" rel="noopener">롱선사 길찾기</a>
           </div>
         </div>
         <div class="slot">
-          <div class="slot-time">오후</div>
+          <div class="slot-time">11시쯤</div>
           <div class="slot-content">
-            <strong>한낮엔 호텔 풀 or 스파</strong>
-            <span class="slot-note">마사지는 언니들·엄마에게 선물.</span>
+            <strong>나트랑 대성당</strong>
+            <span class="slot-note">스톤 고딕 양식. <strong>운영 07:00-11:00 / 14:00-17:00</strong> 시간 주의. 롱선사에서 차로 5분. 11시 닫히기 전 도착하거나, 점심 후 14시 이후로.</span>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2467309,109.1881257" target="_blank" rel="noopener">대성당 길찾기</a>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">12:00</div>
+          <div class="slot-content">
+            <strong>수영·자유시간</strong>
+            <span class="slot-note">풀 09:00 - 19:00. 점심도 호텔/근처에서 자유롭게.</span>
           </div>
         </div>
         <div class="slot">
           <div class="slot-time">저녁</div>
           <div class="slot-content">
-            <strong>한식 한 끼 — 육몽 BBQ (호텔 건물 내)</strong> + <strong>야시장 + 해변 산책</strong>
-            <span class="slot-note">육몽은 호텔과 같은 AB Central Square. 평점 4.9. 야시장은 도보권.</span>
-            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2407513,109.1950894" target="_blank">육몽 BBQ</a>
-            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2397172,109.1964422" target="_blank">야시장</a>
+            <strong>저녁 (미정)</strong>
+            <span class="slot-note">아직 안 먹어본 카테고리 추천 — 베트남식 라냐/An Thôi 또는 카페/디저트 한 바퀴. 망고스쿱 디저트도 ★4.9.</span>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2397861,109.1904295" target="_blank" rel="noopener">라냐</a>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2368496,109.1943615" target="_blank" rel="noopener">망고스쿱</a>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- DAY 5: 6/28 (일) 귀국 + 6/29 (월) 입국 -->
     <div class="day-panel" data-day-panel="5">
-      <h3>여유롭게 마무리</h3>
+      <h3>6/28 (일) — 귀국 · 6/29 (월) 새벽 입국</h3>
       <div class="slots">
         <div class="slot">
-          <div class="slot-time">오전</div>
+          <div class="slot-time">09:00</div>
           <div class="slot-content">
-            <strong>호텔 조식 + 풀 마지막</strong>
-            <span class="slot-note">체크아웃 12시. 짐 맡기고 풀에서 한 번 더.</span>
+            <strong>호텔 조식</strong>
+            <span class="slot-note">마지막 조식 여유롭게.</span>
           </div>
         </div>
         <div class="slot">
-          <div class="slot-time">점심</div>
+          <div class="slot-time">11:00</div>
           <div class="slot-content">
-            <strong>롯데마트 or 강남마트에서 기념품 + 점심</strong>
-            <span class="slot-note">망고젤리·라핑카우 치즈·G7 커피·코코넛 과자. 환전도 여기서.</span>
-            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2516974,109.1770415" target="_blank">롯데마트</a>
+            <strong>체크아웃</strong>
+            <span class="slot-note">짐은 호텔 컨시어지에 맡기기.</span>
           </div>
         </div>
         <div class="slot">
-          <div class="slot-time">오후</div>
+          <div class="slot-time">낮~저녁</div>
           <div class="slot-content">
-            <strong>공항 이동 → 출국</strong>
-            <span class="slot-note">공항까지 약 40분. 출국 3시간 전 출발 기준 역산.</span>
+            <strong>쇼핑 — 롯데마트 / 강남마트</strong>
+            <span class="slot-note">기념품 마지막 쇼핑. 망고젤리·라핑카우·G7 커피·코코넛 과자. 환전 잔액 다 쓰기. 김치 다 못 먹었으면 강남마트에서 추가 보충.</span>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2516974,109.1770415" target="_blank" rel="noopener">롯데마트</a>
+            <a class="slot-link" href="https://www.google.com/maps/dir/?api=1&destination=12.2430575,109.1947707" target="_blank" rel="noopener">강남마트</a>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">21:50</div>
+          <div class="slot-content">
+            <strong>깜란공항 출국</strong>
+            <span class="slot-note">에어부산 BX787 (귀국편). 공항 3시간 전 도착 권장 → 18:30~19:00에 호텔 출발.</span>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">6/29 05:15</div>
+          <div class="slot-content">
+            <strong>인천공항 도착 → 샌딩</strong>
+            <span class="slot-note">새벽 도착. 샌딩(공항→집) 예약 미리 해두기. 첫차 시간도 체크.</span>
           </div>
         </div>
       </div>
@@ -1140,16 +1231,20 @@
     <div class="warnings">
       <h3>꼭 <em>알아둘 것</em></h3>
       <div class="warn-grid">
-        <div class="warn-item"><h5>01 · 한낮 외출</h5><p>11시–15시는 야외 최소화. 탈수·열사병 위험. 이 시간엔 수영장·스파·낮잠.</p></div>
-        <div class="warn-item"><h5>02 · 오토바이</h5><p>횡단보도에서도 안 멈춤. 길 건널 땐 조카 손 꼭 잡고 천천히. 뒷걸음질 금지.</p></div>
-        <div class="warn-item"><h5>03 · 물 · 얼음</h5><p>무조건 생수. 길거리 음료 얼음은 피하기. 식당 얼음은 대부분 OK.</p></div>
-        <div class="warn-item"><h5>04 · 자외선</h5><p>한국보다 훨씬 셈. SPF50+ 2시간마다 덧바르기. 아이 어깨 특히 쉽게 탐.</p></div>
-        <div class="warn-item"><h5>05 · 현금 vs 카드</h5><p>호텔·대형마트는 카드 OK. 야시장·로컬은 현금만. VND 소액권 충분히. 환전은 현지 금은방·롯데마트 유리.</p></div>
-        <div class="warn-item"><h5>06 · Grab + eSIM</h5><p>택시는 Grab. eSIM 한국에서 미리 사두면 저렴.</p></div>
-        <div class="warn-item"><h5>07 · 비상 대비</h5><p>해열제·감기약·지사제·모기 패치·반창고 한국에서 챙기기.</p></div>
-        <div class="warn-item"><h5>08 · 사원 드레스 코드</h5><p>포나가르·롱선사 방문 시 <strong>무릎 덮는 하의 + 어깨 가림</strong> 필수.</p></div>
-        <div class="warn-item"><h5>09 · 해산물집 바가지 주의</h5><p>일부 집은 메뉴판 가격(냉동)과 실제 요리(생) 가격이 다름. 주문 전 g당 가격·최종가 확인. CNY(설 연휴) 시기엔 10% 추가 붙기도.</p></div>
-        <div class="warn-item"><h5>10 · 호텔 지점 재확인</h5><p>이 플랜은 시내 Hyatt Regency Nha Trang(44 Tran Phu) 기준. 깜란공항 쪽 Cam Ranh Bay Resort면 동선 다 달라짐.</p></div>
+        <div class="warn-item"><h5>01 · 6/24 픽업 예약</h5><p>20:40 입국 → 늦은 시간. 사전 픽업(7인승) 필수 예약. 클룩·마이리얼트립에서 사전 결제하면 안심.</p></div>
+        <div class="warn-item"><h5>02 · 6/29 새벽 샌딩</h5><p>05:15 인천 도착 → 첫차 안 다님. 공항리무진/샌딩 예약 미리. 5명 분 동선 짜두기.</p></div>
+        <div class="warn-item"><h5>03 · 6/25 펍 미성년자 시간</h5><p>스카이라이트는 <strong>미성년자 21시 이전 퇴실</strong>. 조카 연령에 따라 시간 짜기. 모르면 알티튜드 일찍 가는 게 안전.</p></div>
+        <div class="warn-item"><h5>04 · 6/26 호핑 멀미</h5><p>스피드보트 + 5시간. 멀미약 한국에서 출국 전 챙기기. 어린이용 키미테/이멘딘 권장.</p></div>
+        <div class="warn-item"><h5>05 · 한낮 외출</h5><p>11시–15시는 야외 최소화. 일정상 사원도 16시 이후로 잘 짜였음. 풀·스파·낮잠으로 채우기.</p></div>
+        <div class="warn-item"><h5>06 · 사원 드레스 코드</h5><p>포나가르(6/25)·롱선사(6/27) 방문 시 <strong>무릎 덮는 하의 + 어깨 가림</strong> 필수. 얇은 가디건·스카프 챙기기.</p></div>
+        <div class="warn-item"><h5>07 · 대성당 운영 시간</h5><p><strong>07:00-11:00 / 14:00-17:00</strong>. 점심시간 닫힘. 6/27 롱선사 끝나고 바로 가면 11시 전 도착해야 들어감.</p></div>
+        <div class="warn-item"><h5>08 · 자외선</h5><p>한국보다 훨씬 셈. SPF50+ 2시간마다. 호핑날(6/26)은 워터프루프. 어깨·코 특히 잘 탐.</p></div>
+        <div class="warn-item"><h5>09 · 오토바이</h5><p>나트랑 횡단보도에서도 안 멈춤. 천천히 일정 속도로 걷기. 뒷걸음질·뛰기 금지. 큰 그룹일수록 위험.</p></div>
+        <div class="warn-item"><h5>10 · 물 · 얼음</h5><p>무조건 생수. 길거리 음료 얼음 피하기. 호텔·식당 얼음은 OK. 첫날·둘째날 배탈 잦음.</p></div>
+        <div class="warn-item"><h5>11 · 현금 비중 높음</h5><p>담시장·넴느엉·로컬 식당은 현금만. VND 소액권(1만·2만·5만·10만) 충분히. 카드는 호텔·대형마트만.</p></div>
+        <div class="warn-item"><h5>12 · 해산물집 가격 확인</h5><p>일부 집은 메뉴판(냉동) ≠ 실제(생) 가격. 주문 전 g당 가격·예상 총액 확인. 영수증도 점검.</p></div>
+        <div class="warn-item"><h5>13 · 호핑 픽업 위치</h5><p>8:30 픽업 — 호텔 로비? 길거리? 업체에 사전 확인. 시간 늦으면 두고 감. 7-8시에 조식 마무리.</p></div>
+        <div class="warn-item"><h5>14 · Grab + eSIM</h5><p>택시는 Grab. eSIM 한국에서 미리(클룩·트립닷컴). 5명이 흩어져도 통신 안전.</p></div>
       </div>
     </div>
   </section>
@@ -1172,10 +1267,16 @@
     { name: 'Hyatt Regency Nha Trang', cat: '숙소', lat: 12.2409557, lng: 109.1962023, rating: 4.7, count: 104, note: '44 Tran Phu St. 시내 중심 해변 앞. 2025.12 오픈' },
 
     // 관광
-    { name: 'VinWonders (빈원더스)', cat: '관광', lat: 12.2170491, lng: 109.2408716, rating: 4.7, count: 15151, note: '혼째 섬 대형 테마파크. 케이블카 입도. Day 2 하루 통째' },
-    { name: 'Po Nagar Cham Towers (포나가르)', cat: '관광', lat: 12.2653665, lng: 109.1953678, rating: 4.5, count: 30912, note: '참파 왕국 힌두 사원. 붉은 벽돌탑. 오전 방문 추천' },
-    { name: 'Long Son Pagoda (롱선사)', cat: '관광', lat: 12.2501803, lng: 109.1801753, rating: 4.3, count: 14863, note: '거대 흰 대불. 220계단. 전망 좋음' },
+    { name: 'Po Nagar Cham Towers (포나가르)', cat: '관광', lat: 12.2653665, lng: 109.1953678, rating: 4.5, count: 30912, note: '참파 왕국 힌두 사원. 입장료 3만동. 운영 06:00-18:00. <strong>6/25 16:00 방문</strong>' },
+    { name: 'Long Son Pagoda (롱선사)', cat: '관광', lat: 12.2501803, lng: 109.1801753, rating: 4.3, count: 14863, note: '거대 흰 대불. 220계단. 운영 06:00-18:00. <strong>6/27 10:00 방문</strong>' },
+    { name: 'Nha Trang Cathedral (대성당)', cat: '관광', lat: 12.2467309, lng: 109.1881257, rating: 4.1, count: 2994, note: '스톤 고딕 양식. 운영 07:00-11:00 / 14:00-17:00. <strong>6/27 방문</strong>' },
+    { name: 'Dam Market (담시장)', cat: '관광', lat: 12.2549514, lng: 109.1918164, rating: 3.9, count: 18575, note: '대형 로컬 시장. 운영 05:00-18:30. 과일·커피·말린 망고·캐슈넛. <strong>6/25 17:30 방문</strong>' },
     { name: 'Nha Trang Night Market (야시장)', cat: '관광', lat: 12.2397172, lng: 109.1964422, rating: 3.8, count: 6322, note: '호텔 도보권. 저녁 19-22시. 기념품·비치웨어' },
+
+    // 펍·바
+    { name: 'Skylight & Lá Kitchen 스카이라이트', cat: '펍·바', lat: 12.2433961, lng: 109.195842, rating: 4.6, count: 6879, note: 'Havana 호텔 옥상. 360도 나트랑 야경. <strong>월 휴무</strong>. 미성년자 21시 이전 퇴실' },
+    { name: 'Altitude Rooftop Bar 알티튜드', cat: '펍·바', lat: 12.24639, lng: 109.1958309, rating: 4.8, count: 1862, note: '쉐라톤 28층 루프탑. 더 차분한 분위기. 15:00-24:00' },
+    { name: 'Sailing Club 세일링클럽', cat: '펍·바', lat: 12.2340918, lng: 109.1980213, rating: 4.2, count: 10758, note: '비치프론트 펍. <strong>불쇼 22:00</strong>. DJ + 빈백 + 모래사장. 음식은 호불호' },
 
     // 한식
     { name: '육몽 BBQ 한식', cat: '한식', lat: 12.2407513, lng: 109.1950894, rating: 4.9, count: 2819, note: '호텔과 같은 건물(AB Central Square L1). 직원이 고기 구워줌. 김치찌개 맛집' },
@@ -1190,6 +1291,7 @@
     { name: 'Red Crab Seafood Grill', cat: '해산물', lat: 12.2389272, lng: 109.1952007, rating: 4.7, count: 4532, note: 'Panorama 호텔 내. 칠리크랩 + 볶음밥 조합이 명물' },
 
     // 베트남식
+    { name: 'Nem Nướng Đặng Văn Quyên 넴느엉 당반꾸엔', cat: '베트남식', lat: 12.2537197, lng: 109.1938289, rating: 4.1, count: 5538, note: '나트랑 명물 넴느엉(구운 돼지고기 라이스페이퍼 롤). 로컬 인기. 담시장 근처. <strong>6/25 저녁</strong>' },
     { name: 'Phở Hạnh Phúc', cat: '베트남식', lat: 12.2441179, lng: 109.191114, rating: 4.7, count: 10721, note: '찐 로컬 쌀국수. 가성비 최고. 육수가 깊음. 현금 결제' },
     { name: 'An Thôi', cat: '베트남식', lat: 12.2416163, lng: 109.19164, rating: 4.8, count: 10717, note: '한국인 단골 많음. 파인애플 볶음밥·라이스페이퍼롤·반쎄오' },
     { name: '라냐 (La Nhà)', cat: '베트남식', lat: 12.2397861, lng: 109.1904295, rating: 4.8, count: 7051, note: '베트남 가정식. 4인 세트 20만동 가성비. 12시 전 도착 권장' },
@@ -1211,9 +1313,9 @@
   ];
 
   const CHECKLIST = {
-    'check-essential': ['여권 · 비자 (45일 무비자)', 'SPF50+ 선크림', '챙 넓은 모자 · 선글라스', '수영복 2벌', '래시가드 (조카)', '아쿠아슈즈 5켤레', '얇은 긴팔/가디건', '3단 경량 우산'],
-    'check-medical': ['해열제 · 감기약 · 지사제', '반창고 · 화상 연고', '모기 기피제 · 패치', '체온계', '여성 위생용품', '휴대용 물티슈'],
-    'check-misc': ['eSIM (한국에서 사전 구매)', 'C타입 충전기 · 멀티탭', '보조 배터리', '지퍼백 (젖은 수영복)', 'USD 소액권 + 카드', '방수 파우치 (호핑 투어)', '간식 약간 (조카용)'],
+    'check-essential': ['여권 · 비자 (45일 무비자)', '항공편 예약번호 KIH4M4 메모', '6/24 깜란공항 픽업 예약', '6/29 인천공항 샌딩 예약', 'SPF50+ 선크림', '챙 넓은 모자 · 선글라스', '수영복 2벌', '래시가드 (조카)', '아쿠아슈즈 5켤레', '얇은 긴팔/가디건 (사원·에어컨용)', '3단 경량 우산'],
+    'check-medical': ['해열제 · 감기약 · 지사제', '멀미약 (호핑투어용)', '반창고 · 화상 연고', '모기 기피제 · 패치', '체온계', '여성 위생용품', '휴대용 물티슈'],
+    'check-misc': ['eSIM (한국에서 사전 구매)', 'C타입 충전기 · 멀티탭', '보조 배터리', '지퍼백 (젖은 수영복)', 'VND 소액권 충분히 + 카드', '방수 파우치 (호핑 투어)', '호텔 주소 베트남어로 메모(택시용)', '간식 약간 (조카용)'],
   };
 
   // =========================
@@ -1273,6 +1375,7 @@
       document.getElementById('rate-sub').textContent = `갱신 ${updated}`;
       document.getElementById('rate-time').textContent = `실시간 환율 · 1원 = ${currentRate.toFixed(2)} VND`;
       computeRate();
+      updateQuickConv();
       return true;
     } catch (e) {
       currentRate = 18;
@@ -1280,6 +1383,7 @@
       document.getElementById('rate-sub').textContent = '오프라인 추정치';
       document.getElementById('rate-time').textContent = '⚠️ API 실패. 1원 ≈ 18 VND로 계산 중';
       computeRate();
+      updateQuickConv();
       return false;
     }
   }
@@ -1302,22 +1406,36 @@
   document.getElementById('vnd-input').addEventListener('input', computeRateReverse);
 
   // =========================
-  // BUDGET
+  // BUDGET (현지 예상 지출 · 5인 · 4박)
   // =========================
   function computeBudget() {
-    const flight = parseFloat(document.getElementById('bud-flight').value) || 0;
     const food = parseFloat(document.getElementById('bud-food').value) || 0;
-    const activity = parseFloat(document.getElementById('bud-activity').value) || 0;
+    const massage = parseFloat(document.getElementById('bud-massage').value) || 0;
     const etc = parseFloat(document.getElementById('bud-etc').value) || 0;
-    const perPerson = flight + (food * 5) + activity + etc;
+    const transport = parseFloat(document.getElementById('bud-transport').value) || 0;
+    // 식비는 1인 4일치, 마사지는 2회, 입장료·교통은 1인 합계
+    const perPerson = (food * 4) + (massage * 2) + etc + transport;
     const total = perPerson * 5;
     document.getElementById('budget-result').textContent =
-      `1인 ${perPerson.toLocaleString()}원 / 5인 총 ${total.toLocaleString()}원`;
+      `1인 ${perPerson.toLocaleString()}원 / 5인 ${total.toLocaleString()}원`;
   }
-  ['bud-flight', 'bud-food', 'bud-activity', 'bud-etc'].forEach(id => {
+  ['bud-food', 'bud-massage', 'bud-etc', 'bud-transport'].forEach(id => {
     document.getElementById(id).addEventListener('input', computeBudget);
   });
   computeBudget();
+
+  // =========================
+  // QUICK CONVERSION (환율 변동 시마다 갱신됨)
+  // =========================
+  function updateQuickConv() {
+    if (!currentRate) return;
+    const amts = [1000, 5000, 10000, 50000, 100000];
+    const ids = ['q1', 'q5', 'q10', 'q50', 'q100'];
+    amts.forEach((krw, i) => {
+      const vnd = Math.round(krw * currentRate);
+      document.getElementById(ids[i]).textContent = vnd.toLocaleString() + '₫';
+    });
+  }
 
   // =========================
   // MAP (iframe q= 방식)
@@ -1380,7 +1498,7 @@
   // =========================
   // CHECKLIST
   // =========================
-  const STORAGE_KEY = 'nhatrang_checklist_v2';
+  const STORAGE_KEY = 'nhatrang_checklist_v3';
   function loadChecklistState() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
     catch (e) { return {}; }
@@ -1446,21 +1564,16 @@
   // =========================
   // DDAY
   // =========================
-  const DATE_KEY = 'nhatrang_travel_date_v2';
+  const DATE_KEY = 'nhatrang_travel_date_v3';
+  const DEFAULT_DATE = '2026-06-24'; // 친구 확정 일정
   const dateInput = document.getElementById('travel-date');
 
   function updateDday() {
-    const savedDate = localStorage.getItem(DATE_KEY);
+    let savedDate = localStorage.getItem(DATE_KEY) || DEFAULT_DATE;
     const ddayEl = document.getElementById('dday');
     const subEl = document.getElementById('dday-sub');
     const navDday = document.getElementById('nav-dday');
 
-    if (!savedDate) {
-      ddayEl.textContent = '–';
-      subEl.textContent = '여행 날짜 설정';
-      navDday.textContent = 'D-??';
-      return;
-    }
     dateInput.value = savedDate;
     const target = new Date(savedDate + 'T00:00:00');
     const today = new Date();
@@ -1475,7 +1588,7 @@
       ddayEl.textContent = 'D-DAY';
       subEl.textContent = '출발 당일!';
       navDday.textContent = 'D-DAY';
-    } else if (diffDays >= -4) {
+    } else if (diffDays >= -5) {
       ddayEl.textContent = `Day ${Math.abs(diffDays)+1}`;
       subEl.textContent = '여행 중 🌴';
       navDday.textContent = `Day ${Math.abs(diffDays)+1}`;
@@ -1484,11 +1597,11 @@
       subEl.textContent = '즐거운 여행 되셨나요?';
       navDday.textContent = 'DONE';
     }
+    // 일정 탭 — 친구 일정에 맞춘 고정 라벨이라 날짜 자동 표시는 불필요
+    // 다만 오늘 날짜 하이라이트는 유지
     for (let i = 0; i < 5; i++) {
       const d = new Date(target);
       d.setDate(d.getDate() + i);
-      const el = document.querySelector(`[data-day-date="${i}"]`);
-      if (el) el.textContent = `${d.getMonth()+1}/${d.getDate()}`;
       const tab = document.querySelector(`#day-tabs .tab[data-day="${i+1}"]`);
       if (tab) tab.classList.remove('today');
       const dd = new Date(d); dd.setHours(0,0,0,0);
